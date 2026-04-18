@@ -1289,15 +1289,15 @@ document.getElementById('modal-submit').addEventListener('click', () => {
   const note = document.getElementById('modal-note').value.trim();
   if (!name) { showToast('请输入动作名称'); return; }
 
-  const exList2 = [name];
-  if (reps) exList2.push(reps);
-  if (note) exList2.push(note);
+  const exerciseDetails = [name];
+  if (reps) exerciseDetails.push(reps);
+  if (note) exerciseDetails.push(note);
 
   plans.push({
     id:        Date.now(),
     day:       '待定',
     name:      `${selectedChip} · ${name}`,
-    exercises: exList2,
+    exercises: exerciseDetails,
     sets,
     done:      false,
     icon:      CATS[selectedChip]?.emoji || '🏋️',
@@ -1399,7 +1399,7 @@ function drawRingChart() {
 
   /* legend */
   const ly = ch - 14;
-  const draw_legend = (x, color, label) => {
+  const drawLegend = (x, color, label) => {
     ctx.beginPath();
     ctx.arc(x, ly, 5, 0, Math.PI * 2);
     ctx.fillStyle = color;
@@ -1409,8 +1409,8 @@ function drawRingChart() {
     ctx.textAlign = 'left';
     ctx.fillText(label, x + 9, ly + 1);
   };
-  draw_legend(cx - 68, '#4CAF50', '已打卡');
-  draw_legend(cx + 8,  '#E9ECEF', '未打卡');
+  drawLegend(cx - 68, '#4CAF50', '已打卡');
+  drawLegend(cx + 8,  '#E9ECEF', '未打卡');
 }
 
 function drawLineChart() {
